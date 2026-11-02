@@ -1,0 +1,20 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main, "kuyruk/**"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  governance:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: sleep 120
+  app:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo ok
